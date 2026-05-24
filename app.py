@@ -116,3 +116,19 @@ if uploaded_image is not None:
         st.markdown("Generated Caption")
         st.subheader("Uploaded Image")
         st.image(uploaded_image, use_container_width=True)
+
+import gdown
+import os
+
+# model.h5 download karo agar nahi hai
+if not os.path.exists('model.h5'):
+    gdown.download(
+        'https://drive.google.com/uc?id=TUMHARA_FILE_ID',
+        'model.h5', quiet=False
+    )
+
+if not os.path.exists('tokenizer.pkl'):
+    gdown.download(
+        'https://drive.google.com/uc?id=TUMHARA_FILE_ID',
+        'tokenizer.pkl', quiet=False
+    )
