@@ -1,3 +1,25 @@
+import gdown
+import os
+
+# Download model files if not present
+if not os.path.exists('model.h5'):
+    gdown.download(
+        'https://drive.google.com/file/d/1AMfzBUzS4CtDpxlaF9hSX4Xg2NlbmpMx/view?usp=sharing',
+        'model.h5', quiet=False
+    )
+
+if not os.path.exists('tokenizer.pkl'):
+    gdown.download(
+        'https://drive.google.com/file/d/12vNGoIYG8_rVj1oFMBYtsu-xw8AKRV6b/view?usp=sharing',
+        'tokenizer.pkl', quiet=False
+    )
+
+if not os.path.exists('features.pkl'):
+    gdown.download(
+        'https://drive.google.com/file/d/1cUmvDKk7HJvTcXcnaQb2yQg1S2EL0x47/view?usp=sharing',
+        'features.pkl', quiet=False
+    )
+
 import streamlit as st
 import numpy as np
 import pickle
