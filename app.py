@@ -137,4 +137,4 @@ if uploaded_image is not None:
         st.audio(audio_path, format='audio/mp3')
         st.markdown("Generated Caption")
         st.subheader("Uploaded Image")
-        st.image(uploaded_image, use_container_width=True)
+        st.image(uploaded_image, width='stretch')
