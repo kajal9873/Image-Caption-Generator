@@ -35,12 +35,23 @@ from gtts import gTTS
 vgg_model = VGG16()
 vgg_model = Model(inputs=vgg_model.inputs, outputs=vgg_model.layers[-2].output)
 
-# Load the trained image captioning model
-model = load_model('model.h5')
+# ✅ Sirf ek baar load hoga, memory mein cache rahega
+@st.cache_resource
+def load_models():
+    model = load_model('model.h5')
+    vgg_model = VGG16(weights='imagenet', include_top=True)
+    vgg_model = Model(inputs=vgg_model.inputs, outputs=vgg_model.layers[-2].output)
+    return model, vgg_model
 
-# Load the tokenizer
-with open('tokenizer.pkl', 'rb') as tokenizer_file:
-    tokenizer = pickle.load(tokenizer_file)
+@st.cache_resource
+def load_tokenizer():
+    with open('tokenizer.pkl', 'rb') as f:
+        tokenizer = pickle.load(f)
+    return tokenizer
+
+# App mein use karo
+model, vgg_model = load_models()
+tokenizer = load_tokenizer()
     
 # Set custom web page title
 st.set_page_config(page_title="Caption Generator App", page_icon="📷")
